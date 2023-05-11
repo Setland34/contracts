@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/Utils/SafeERC20.sol";
 //import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 
 interface IComet {
@@ -37,6 +38,7 @@ interface IERC20FeeProxy {
 
 contract Paytr is Ownable, Pausable, ReentrancyGuard {
     using SafeERC20 for IERC20;
+    AggregatorV3Interface internal priceFeed;
 
     address public ERC20FeeProxyAddress;
     address public gelatoAddress;
@@ -45,6 +47,9 @@ contract Paytr is Ownable, Pausable, ReentrancyGuard {
         gelatoAddress = _gelatoAddress; //Polygon + Mumbai msg.sender Gelato address = 0x83C766237dD04EB47F62784218839F892A691E84
         allowedCometInfo[_cometAddress] = CometInfo(true, _decimals); //Comet Mumbai cUSDCv3 address = 0xF09F0369aB0a875254fB565E52226c88f10Bc839, USDC uses 6 decimals
         ERC20FeeProxyAddress = _ERC20FeeProxyAddress; //Mumbai ERC20FeeProxyAddress (Request Network) = 0x131eb294E3803F23dc2882AB795631A12D1d8929
+        priceFeed = AggregatorV3Interface(
+            0xAb5c49580294Aff77670F839ea425f5b78ab3Ae7
+        );
     }
 
     event PaymentERC20Event(uint256 amount, uint256 dueDate, address payee, address tokenAddress, bytes paymentReference);
@@ -128,6 +133,18 @@ contract Paytr is Ownable, Pausable, ReentrancyGuard {
     modifier onlyGelatoOrOwner {
         require(msg.sender == gelatoAddress || msg.sender == owner(), "Only Gelato or owner");
         _;
+    }
+
+    function getLatestPrice() public view returns (int) {
+        // prettier-ignore
+        (
+            /* uint80 roundID */,
+            int price,
+            /*uint startedAt*/,
+            /*uint timeStamp*/,
+            /*uint80 answeredInRound*/
+        ) = priceFeed.latestRoundData();
+        return price;
     }
 
     /**
