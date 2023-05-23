@@ -66,7 +66,7 @@ contract("Paytr", (accounts) => {
       );
       
       let whaleAccountBalanceAfterTx = await USDCContract.methods.balanceOf(whaleAccount).call();
-      let expectedWhaleAccountBalanceAfterTx = web3.utils.toBN(whaleAccountBalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedWhaleAccountBalanceAfterTx = web3.utils.toBN(whaleAccountBalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).toString();
 
       let instanceCtokenBalanceAfter = await cTokenContract.methods.balanceOf(instance.address).call();
 
@@ -96,7 +96,7 @@ contract("Paytr", (accounts) => {
       );
       
       let whaleAccountBalanceAfterTx = await USDCContract.methods.balanceOf(whaleAccount).call();
-      let expectedWhaleAccountBalanceAfterTx = web3.utils.toBN(whaleAccountBalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(feeAmount)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedWhaleAccountBalanceAfterTx = web3.utils.toBN(whaleAccountBalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(feeAmount)).toString();
       let instanceCtokenBalanceAfter = await cTokenContract.methods.balanceOf(instance.address).call();
 
       assert.equal(whaleAccountBalanceAfterTx,expectedWhaleAccountBalanceAfterTx,"Whale account balance doens't match expected balance");
@@ -121,7 +121,8 @@ contract("Paytr", (accounts) => {
       );
       
       let whaleAccountBalanceAfterTx = await USDCContract.methods.balanceOf(whaleAccount).call();
-      let expectedWhaleAccountBalanceAfterTx = web3.utils.toBN(whaleAccountBalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(protocolFee)).toString();      let instanceCtokenBalanceAfter = await cTokenContract.methods.balanceOf(instance.address).call();
+      let expectedWhaleAccountBalanceAfterTx = web3.utils.toBN(whaleAccountBalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).toString();
+      let instanceCtokenBalanceAfter = await cTokenContract.methods.balanceOf(instance.address).call();
 
       assert.equal(whaleAccountBalanceAfterTx,expectedWhaleAccountBalanceAfterTx,"Whale account balance doens't match expected balance");
       assert.notEqual(instanceCtokenBalanceBefore,instanceCtokenBalanceAfter, "cToken balance is equal!");
@@ -257,7 +258,7 @@ contract("Paytr", (accounts) => {
       );
 
       let whaleAccountBalanceAfterTx = await USDCContract.methods.balanceOf(whaleAccount).call();
-      let expectedWhaleAccountBalanceAfterTx = web3.utils.toBN(whaleAccountBalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedWhaleAccountBalanceAfterTx = web3.utils.toBN(whaleAccountBalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).toString();
 
       assert.equal(whaleAccountBalanceAfterTx,expectedWhaleAccountBalanceAfterTx,"Whale account balance doens't match expected balance");
       truffleAssert.eventEmitted(payment1,"PaymentERC20Event");
@@ -278,7 +279,7 @@ contract("Paytr", (accounts) => {
       );
 
       let accounts4BalanceAfterTx = await USDCContract.methods.balanceOf(accounts[4]).call();
-      let expectedAccounts4BalanceAfterTx = web3.utils.toBN(accounts4BalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedAccounts4BalanceAfterTx = web3.utils.toBN(accounts4BalanceBeforeTx).sub(web3.utils.toBN(amountToPay)).toString();
 
       assert.equal(accounts4BalanceAfterTx,expectedAccounts4BalanceAfterTx,"Accounts[4] account balance doens't match expected balance");
       truffleAssert.eventEmitted(payment2,"PaymentERC20Event");
@@ -301,7 +302,7 @@ contract("Paytr", (accounts) => {
       );
 
       let whaleAccountBalanceAfterTxWithFee = await USDCContract.methods.balanceOf(whaleAccount).call();
-      let expectedWhaleAccountBalanceAfterTxWithFee = web3.utils.toBN(whaleAccountBalanceBeforeTxWithFee).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(feeAmount)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedWhaleAccountBalanceAfterTxWithFee = web3.utils.toBN(whaleAccountBalanceBeforeTxWithFee).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(feeAmount)).toString();
 
       assert.equal(whaleAccountBalanceAfterTxWithFee,expectedWhaleAccountBalanceAfterTxWithFee,"Whale account balance doens't match expected balance");
       truffleAssert.eventEmitted(payment1WithFee,"PaymentERC20EventWithFee");
@@ -323,7 +324,7 @@ contract("Paytr", (accounts) => {
         {from: accounts[4]}
       );
       let accounts4BalanceAfterTxWithFee = await USDCContract.methods.balanceOf(accounts[4]).call();
-      let expectedAccounts4BalanceAfterTxWithFee = web3.utils.toBN(accounts4BalanceBeforeTxWithFee).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(feeAmount)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedAccounts4BalanceAfterTxWithFee = web3.utils.toBN(accounts4BalanceBeforeTxWithFee).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(feeAmount)).toString();
 
       assert.equal(accounts4BalanceAfterTxWithFee,expectedAccounts4BalanceAfterTxWithFee,"Accounts[4] account balance doens't match expected balance");
       truffleAssert.eventEmitted(payment2WithFee,"PaymentERC20EventWithFee");

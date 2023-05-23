@@ -65,7 +65,7 @@ describe("Normal payment flow of 2 invoices + payout of due invoices", () => {
       console.log("WhaleAccount balance after tx1: ",whaleAccountBalanceAfterTx1);
       //sub 2 is needed because the number of cTokens is sometimes lower than the amount supplied
       let expectedContractBalanceAfterTx1 = web3.utils.toBN(contractBalanceBeforeTx1).add(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(2)).toString();
-      let expectedWhaleAccountBalanceAfterTx1 = web3.utils.toBN(whaleAccountBalanceBeforeTx1).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedWhaleAccountBalanceAfterTx1 = web3.utils.toBN(whaleAccountBalanceBeforeTx1).sub(web3.utils.toBN(amountToPay)).toString();
     
       assert(contractBalanceAfterTx1 >= expectedContractBalanceAfterTx1,"Contract balance doesn't match expected contract balance tx1");
       assert.equal(whaleAccountBalanceAfterTx1,expectedWhaleAccountBalanceAfterTx1,"Whale account balance doens't match expected balance tx1")
@@ -101,7 +101,7 @@ describe("Normal payment flow of 2 invoices + payout of due invoices", () => {
       let whaleAccountBalanceAfterTx2 = await USDCContract.methods.balanceOf(whaleAccount).call();
       console.log("WhaleAccount balance after tx2: ",whaleAccountBalanceAfterTx2);
       let expectedContractBalanceAfterTx2 = web3.utils.toBN(contractBalanceBeforeTx2).add(web3.utils.toBN(amountToPay)).add(web3.utils.toBN(feeAmount)).toString();
-      let expectedWhaleAccountBalanceAfterTx2 = web3.utils.toBN(whaleAccountBalanceBeforeTx2).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(feeAmount)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedWhaleAccountBalanceAfterTx2 = web3.utils.toBN(whaleAccountBalanceBeforeTx2).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(feeAmount)).toString();
 
 
       assert(contractBalanceAfterTx2 >= expectedContractBalanceAfterTx2,"Contract balance doesn't match expected contract balance tx2");
@@ -143,7 +143,7 @@ describe("Normal payment flow of 2 invoices + payout of due invoices", () => {
       console.log("WhaleAccount balance after tx3: ",whaleAccountBalanceAfterTx3);
       //let expectedContractBalanceAfterTx3 = contractBalanceBeforeTx3 + amountToPay;
       let expectedContractBalanceAfterTx3 = web3.utils.toBN(contractBalanceBeforeTx3).add(web3.utils.toBN(amountToPay)).toString();
-      let expectedWhaleAccountBalanceAfterTx3 = web3.utils.toBN(whaleAccountBalanceBeforeTx3).sub(web3.utils.toBN(amountToPay)).sub(web3.utils.toBN(protocolFee)).toString();
+      let expectedWhaleAccountBalanceAfterTx3 = web3.utils.toBN(whaleAccountBalanceBeforeTx3).sub(web3.utils.toBN(amountToPay)).toString();
 
       assert.equal(expectedContractBalanceAfterTx3, expectedContractBalanceAfterTx3,"Contract balance doesn't match expected contract balance tx3");
       assert.equal(whaleAccountBalanceAfterTx3,expectedWhaleAccountBalanceAfterTx3,"Whale account balance doens't match expected balance tx3");
