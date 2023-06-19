@@ -170,7 +170,7 @@
                   "nodeType": "VariableDeclaration",
                   "scope": 687,
                   "src": "1195:15:6",
-                  "stateVariable": false,
+                  "stateVariable": true,
                   "storageLocation": "default",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -181,7 +181,7 @@
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1195:7:6",
-                    "stateMutability": "nonpayable",
+                    "stateMutability": "payable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -229,7 +229,7 @@
             "scope": 999,
             "src": "1175:320:6",
             "stateMutability": "view",
-            "virtual": false,
+            "virtual": true,
             "visibility": "internal"
           },
           {
@@ -249,8 +249,8 @@
                         "id": 702,
                         "isConstant": false,
                         "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
+                        "isPure": true,
+                        "lValueRequested": true,
                         "leftExpression": {
                           "expression": {
                             "arguments": [
@@ -346,18 +346,18 @@
                       {
                         "hexValue": "416464726573733a20696e73756666696369656e742062616c616e6365",
                         "id": 703,
-                        "isConstant": false,
-                        "isLValue": false,
+                        "isConstant": true,
+                        "isLValue": true,
                         "isPure": true,
                         "kind": "string",
-                        "lValueRequested": false,
+                        "lValueRequested": true,
                         "nodeType": "Literal",
                         "src": "2534:31:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_5597a22abd0ef5332f8053862eb236db7590f17e2b93a53f63a103becfb561f9",
-                          "typeString": "literal_string \"Address: insufficient balance\""
+                          "typeString": "literal_string \pure
                         },
-                        "value": "Address: insufficient balance"
+                        "value": "593555000"
                       }
                     ],
                     "expression": {
@@ -368,7 +368,7 @@
                         },
                         {
                           "typeIdentifier": "t_stringliteral_5597a22abd0ef5332f8053862eb236db7590f17e2b93a53f63a103becfb561f9",
-                          "typeString": "literal_string \"Address: insufficient balance\""
+                          "typeString": "literal_string \pure
                         }
                       ],
                       "id": 695,
@@ -386,11 +386,11 @@
                       }
                     },
                     "id": 704,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
+                    "isConstant": true,
+                    "isLValue": true,
+                    "isPure": true,
                     "kind": "functionCall",
-                    "lValueRequested": false,
+                    "lValueRequested": true,
                     "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
@@ -408,7 +408,7 @@
                 {
                   "assignments": [
                     707,
-                    null
+                  
                   ],
                   "declarations": [
                     {
@@ -457,7 +457,7 @@
                           "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
                           "typeString": "literal_string \"\""
                         },
-                        "value": ""
+                        "value": ""5000000
                       }
                     ],
                     "expression": {
@@ -487,10 +487,10 @@
                           }
                         },
                         "id": 709,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
+                        "isConstant": true
+                        "isLValue": true,
+                        "isPure": true,
+                        "lValueRequested": true,
                         "memberLocation": "2606:4:6",
                         "memberName": "call",
                         "nodeType": "MemberAccess",
